@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./estilos/style.css">
+    <title>Carrito | Tu Lista de Mercado</title>
+</head>
+
+<body class="container">
+    <div class="container-all row">
+        <header class="col">
+            <nav class="navbar navbar-light bg-light">
+                <div class="nav flex-column">
+                    <div>
+                        <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+                        <input type="button" onclick="show_alert()" value="¡Hola, " />
+                    </div>
+
+                    <ul>
+                        <li>
+                            <a class="nav-link" href="./home.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">🛒Carrito</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main class="col-6">
+            <form>
+                <fieldset>
+                    <legend>Guardá tu compra por categoría o producto</legend>
+                </fieldset>
+                <div>
+                    <input name="nombre" id="nombre" class="form-control" type="text" value="alimentos"
+                        placeholder="Producto" />
+
+                </div>
+                <div>
+                    <select class="form-control" name="categoria" id="categoria"></select>
+                </div>
+                <div>
+                    <input type="button" class="btn btn-block btn-primary" value="Buscar" onclick="obtenerProducto()" />
+                </div>
+            </form>
+
+            <div id="listadoProductos">
+            </div>
+        </main>
+
+        <aside class="asideCarrito col">
+            <h2>Carrito</h2>
+            <!-- Elementos del carrito -->
+            <ul id="carrito" class="list-group"></ul>
+            <hr>
+            <!-- Precio total -->
+            <p class="text-right">Total: <span id="total"></span>&euro;</p>
+            <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
+        </aside>
+    </div>
+    <!--  JavaScript -->
+    <script src="./estilos/code.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>

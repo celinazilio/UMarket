@@ -10,14 +10,10 @@ function hello(pedirNombre) {
 
 alert(hello(nombreUsuario));
 
+
+/*
 let cMascotas, cVerduras, cLimpieza, cAlmacen, cCongelados, cBebidas, cRegaleria;
 const listaProducto = [cMascotas, cVerduras, cLimpieza, cAlmacen, cCongelados, cBebidas, cRegaleria];
-const listaNombres = ["Mascotas", "Frutas y Verduras", "Limpieza", "Almacén", "Congelados", "Bebidas", "Regalería"];
-const productoVerduras = ['Limón', 'Arándano', 'Frutilla', 'Mandarina', 'Naranja', 'Pomelo', 'Sandía', 'Melón', 'Coco', 'Kiwi', 'Banana', 'Ananá', 'Cereza', 'Manzana', 'Ciruela', 'Uva', 'Pera', 'Acelga', 'Ajo', 'Cebolla', 'Coliflor', 'Puerro', 'Berenjena', 'Calabaza', 'Tomate', 'Zanahoria', 'Lechuga', , 'Remolacha', 'Huevo'];
-
-let vacia = true;
-
-alert("¡Enlistá tus productos en las secciones que corresponden!");
 
 for (let index = 0; index < listaProducto.length; index++) {
     listaProducto[index] = ":"; // los : están para darle al menos un valor a la variable seleccionada
@@ -36,7 +32,39 @@ for (let index = 0; index < listaProducto.length; index++) {
 if (vacia == true) {
     alert("La lista está vacía... :(");
 }
+let vacia = true;
 
-class Categoria{
-    constructor()
+
+const categorias = ["Mascotas", "Frutas", "Limpieza", "Verduras", "Almacén", "Congelados", "Bebidas", "Regalería"];
+*/
+
+let nombreA = 'Mascotas';
+let nombreB = 'Frutas';
+let nombreC = 'Limpieza';
+let nombreD = 'Verduras';
+
+const nombres = [nombreA,
+    nombreB, nombreC, nombreD
+];
+const nombreVerduras = ['Acelga', 'Ajo', 'Cebolla', 'Coliflor', 'Puerro', 'Berenjena', 'Calabaza', 'Tomate', 'Zanahoria', 'Lechuga', , 'Remolacha', 'Huevo'];
+const nombreFrutas = ['Limón', 'Arándano', 'Frutilla', 'Mandarina', 'Naranja', 'Pomelo', 'Sandía', 'Melón', 'Coco', 'Kiwi', 'Banana', 'Ananá', 'Cereza', 'Manzana', 'Ciruela', 'Uva', 'Pera', ];
+
+
+const nombreA = {
+    nombre: nombreA,
+    categoria: 'Mascotas',
+
+}
+
+const prototipoCarrito = {
+    agregarProducto: function (producto) {
+        if (!this.productos) {
+            this.productos = [producto]
+        } else {
+            this.productos.push(producto);
+        }
+    },
+    obtenerPrecioTotal: function () {
+        return this.productos.reduce((total, p) => total + p.precio, 0);
+    }
 }
