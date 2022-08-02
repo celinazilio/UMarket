@@ -8,9 +8,9 @@ function hello(pedirNombre) {
     }
 }
 
-alert(hello(nombreUsuario));
-
-
+let saludo = document.getElementById("saludoUsuario");
+saludo.innerHTML = "<h2>¡Hola, " + nombreUsuario + "!</h2>";
+//alert(hello(nombreUsuario));
 /*
 let cMascotas, cVerduras, cLimpieza, cAlmacen, cCongelados, cBebidas, cRegaleria;
 const listaProducto = [cMascotas, cVerduras, cLimpieza, cAlmacen, cCongelados, cBebidas, cRegaleria];
@@ -38,40 +38,13 @@ let vacia = true;
 const categorias = ["Mascotas", "Frutas", "Limpieza", "Verduras", "Almacén", "Congelados", "Bebidas", "Regalería"];
 */
 
-let nombreA = 'Mascotas';
-let nombreB = 'Frutas';
-let nombreC = 'Limpieza';
-let nombreD = 'Verduras';
-
-const nombres = [nombreA,
-    nombreB, nombreC, nombreD
-];
-const nombreVerduras = ['Acelga', 'Ajo', 'Cebolla', 'Coliflor', 'Puerro', 'Berenjena', 'Calabaza', 'Tomate', 'Zanahoria', 'Lechuga', 'Remolacha', 'Huevo'];
-const nombreFrutas = ['Limón', 'Arándano', 'Frutilla', 'Mandarina', 'Naranja', 'Pomelo', 'Sandía', 'Melón', 'Coco', 'Kiwi', 'Banana', 'Ananá', 'Cereza', 'Manzana', 'Ciruela', 'Uva', 'Pera', ];
-const mascotasProductos = ['Comida para perros', 'Comida para gatos', 'Shampoo para animales', 'Correa', 'Bozal', 'Juguete', 'Mordedor', 'Pecera'];
-const limpiezaProductos = ['Papel higiénico', 'Pasta dental', 'Cepillo de dientes', 'Hilo dental', 'Desodorante', 'Jabon', 'Shampoo', 'Acondicionador', 'Lavandina'];
+const verdurasProductos = ['Acelga', 'Ajo', 'Cebolla', 'Coliflor', 'Puerro', 'Berenjena', 'Calabaza', 'Tomate', 'Zanahoria', 'Lechuga', 'Remolacha', 'Huevo'];
+const frutasProductos = ['Limón', 'Arándano', 'Frutilla', 'Mandarina', 'Naranja', 'Pomelo', 'Sandía', 'Melón', 'Coco', 'Kiwi', 'Banana', 'Ananá', 'Cereza', 'Manzana', 'Ciruela', 'Uva', 'Pera'];
+const mascotasProductos = ['Comida para perros', 'Comida para gatos', 'Shampoo Antipulgas', 'Correa', 'Bozal', 'Juguete', 'Mordedor', 'Pecera'];
+const limpiezaProductos = ['Papel higiénico', 'Pasta dental', 'Cepillo de dientes', 'Hilo dental', 'Desodorante', 'Jabón', 'Shampoo', 'Acondicionador', 'Lavandina'];
 const bebidasProductos = ['Cerveza 1L', 'Gaseosa cola 2L', 'Agua mineral 600ml', 'Agua saborizada 1.5L', 'Fernet 1L', 'Gaseosa lima 2L', 'Gaseosa naranja 2L', 'Jugo de frutas 1L'];
 const regaleriaProductos = ['Vaso térmico', 'Equipo de mate', 'Mate', 'Cuadro', 'Jarron', 'Maceta'];
 
-
-/*const nombreA = {
-    nombre: nombreA,
-    categoria: 'Mascotas',
-
-}*/
-
-const prototipoCarrito = {
-    agregarProducto: function (producto) {
-        if (!this.productos) {
-            this.productos = [producto]
-        } else {
-            this.productos.push(producto);
-        }
-    },
-    obtenerPrecioTotal: function () {
-        return this.productos.reduce((total, p) => total + p.precio, 0);
-    }
-}
 
 let arrayDummy = [0];
 
@@ -84,15 +57,17 @@ function listaCantidades(arrayCategoria) {
 }
 
 class categoria {
-    constructor(nombre, productos, cantidadCompra){
+    constructor(nombre, productos, cantidadCompra) {
         this.nombre = nombre;
         this.productos = productos;
         this.cantidadCompra = cantidadCompra;
     }
 }
 
-let verduras = new categoria("Verduras", nombreVerduras, listaCantidades(nombreVerduras));
+let verduras = new categoria("Verduras", verdurasProductos, listaCantidades(verdurasProductos));
 let mascotas = new categoria("Mascotas", mascotasProductos, listaCantidades(mascotasProductos));
 let limpieza = new categoria("Limpieza", limpiezaProductos, listaCantidades(limpiezaProductos));
 let bebidas = new categoria("Bebidas", bebidasProductos, listaCantidades(bebidasProductos));
-let regaleria = new categoria("Regaleria",regaleriaProductos, listaCantidades(regaleriaProductos));
+let regaleria = new categoria("Regaleria", regaleriaProductos, listaCantidades(regaleriaProductos));
+
+console.log(verduras.cantidadCompra);
