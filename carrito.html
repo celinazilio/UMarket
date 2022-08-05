@@ -18,64 +18,75 @@
                 <div class="nav flex-column">
                     <div>
                         <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
-                        <div id="saludoUsuario"></div>
+                        <h2 id="saludoUsuario"></h2>
                     </div>
-
-                    <ul>
+                    <div>
                         <li>
                             <a class="nav-link" href="./home.html">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">🛒Carrito</a>
                         </li>
-                    </ul>
+                    </div>
                 </div>
             </nav>
         </header>
-
+        <!-- Autocomplete buscador item-->
         <main class="col-6">
             <form>
-                <fieldset>
-                    <legend>Guardá tu compra por categoría o producto</legend>
-                </fieldset>
-                <div>
-                    <input name="nombre" id="nombre" class="form-control" type="text" value="alimentos"
-                        placeholder="Producto" />
-
-                </div>
-                <div>
-                    <select class="form-control" name="categoria" id="categoria"></select>
-                </div>
-                <div>
-                    <input type="button" class="btn btn-block btn-primary" value="Buscar" onclick="obtenerProducto()" />
-                </div>
+                <h1>Lista de la compra</h1>
+                <div class="container">
+                    <div class="header">
+                        <div class="clear">
+                            <i class="refresh" aria-hidden="true"></i>
+                        </div>
+                        <div id="date"></div>
+                    </div>
+                    <div class="add-item">
+                        <input type="text" id="input" placeholder="Add Something to Do">
+                        <button type="submit" id="button" onclick="addToDo()">Click Me</button>
+                    </div>
+                    <div class="content">
+                        <ul id="list">
+                        </ul>
+                    </div>
             </form>
+            <table>
+                <h3>Categorías</h3>
+                <select id="lacategoria">
+                    <option value="1">Verduras</option>
+                    <option value="2">Frutas</option>
+                    <option value="3">Bebidas</option>
+                    <option value="4">Congelados</option>
+                    <option value="5">Mascotas</option>
+                    <option value="6">Limpieza</option>
+                    <option value="7">Regalería</option>
+                </select>
+            </table>
 
-            <div id="listadoProductos">
-            </div>
         </main>
 
-        <aside class="asideCarrito col">
-            <h2>Carrito</h2>
-            <!-- Elementos del carrito -->
-            <ul id="carrito" class="list-group"></ul>
-            <hr>
-            <!-- Precio total -->
-            <p class="text-right">Total: <span id="total"></span>&euro;</p>
-            <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
+        <!-- Carrito Items cargados-->
+        <aside class="asideCarrito col m-3">
+            <div class="medium-4  columns">
+                <div class="cart">
+                    <h1>Productos en tu Carrito</h1>
+                    <div class="row">
+                        <div class="medium-6 columns">
+                            <button class="tiny secondary" id="clear">Vaciar</button>
+                        </div>
+                        <div class="medium-6 columns">
+                            <button class="tiny disabled" title="chekout">Finalizar</button>
+                        </div>
+                    </div>
+                    <p> Total de Productos: <strong id="totalProductos">0</strong></p>
+                </div>
+            </div>
         </aside>
+
     </div>
     <!--  JavaScript -->
     <script src="./estilos/code.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
 
 </body>
 

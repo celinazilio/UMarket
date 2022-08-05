@@ -7,37 +7,10 @@ function hello(pedirNombre) {
         return "¡Hola!";
     }
 }
-
 let saludo = document.getElementById("saludoUsuario");
 saludo.innerHTML = "<h2>¡Hola, " + nombreUsuario + "!</h2>";
-//alert(hello(nombreUsuario));
-/*
-let cMascotas, cVerduras, cLimpieza, cAlmacen, cCongelados, cBebidas, cRegaleria;
-const listaProducto = [cMascotas, cVerduras, cLimpieza, cAlmacen, cCongelados, cBebidas, cRegaleria];
 
-for (let index = 0; index < listaProducto.length; index++) {
-    listaProducto[index] = ":"; // los : están para darle al menos un valor a la variable seleccionada
-    let productoUsuario = prompt(listaNombres[index]);
-    while (productoUsuario != "") {
-        listaProducto[index] = listaProducto[index] + " - " + productoUsuario;
-        productoUsuario = prompt("Escriba otro producto o deje vacío para omitir");
-    }
-}
-for (let index = 0; index < listaProducto.length; index++) {
-    if (listaProducto[index] != ":") {
-        alert(listaNombres[index] + listaProducto[index]);
-        vacia = false;
-    }
-}
-if (vacia == true) {
-    alert("La lista está vacía... :(");
-}
-let vacia = true;
-
-
-const categorias = ["Mascotas", "Frutas", "Limpieza", "Verduras", "Almacén", "Congelados", "Bebidas", "Regalería"];
-*/
-
+///
 const verdurasProductos = ['Acelga', 'Ajo', 'Cebolla', 'Coliflor', 'Puerro', 'Berenjena', 'Calabaza', 'Tomate', 'Zanahoria', 'Lechuga', 'Remolacha', 'Huevo'];
 const frutasProductos = ['Limón', 'Arándano', 'Frutilla', 'Mandarina', 'Naranja', 'Pomelo', 'Sandía', 'Melón', 'Coco', 'Kiwi', 'Banana', 'Ananá', 'Cereza', 'Manzana', 'Ciruela', 'Uva', 'Pera'];
 const mascotasProductos = ['Comida para perros', 'Comida para gatos', 'Shampoo Antipulgas', 'Correa', 'Bozal', 'Juguete', 'Mordedor', 'Pecera'];
@@ -70,4 +43,6 @@ let limpieza = new categoria("Limpieza", limpiezaProductos, listaCantidades(limp
 let bebidas = new categoria("Bebidas", bebidasProductos, listaCantidades(bebidasProductos));
 let regaleria = new categoria("Regaleria", regaleriaProductos, listaCantidades(regaleriaProductos));
 
-console.log(verduras.cantidadCompra);
+
+
+document.addEventListener("keyup",(event)=>{ if(event.keyCode===13){addToDo()}});
