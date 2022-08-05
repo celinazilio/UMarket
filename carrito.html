@@ -18,38 +18,27 @@
                 <div class="nav flex-column">
                     <div>
                         <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
-                        <h2 id="saludoUsuario"></h2>
+                        <div id="saludoUsuario"></div>
                     </div>
-                    <div>
-                        <li>
+                    <ul>
+                        <div>
                             <a class="nav-link" href="./home.html">Home</a>
-                        </li>
-                        <li class="nav-item">
+                        </div>
+                        <div class="nav-item">
                             <a class="nav-link" href="#">🛒Carrito</a>
-                        </li>
-                    </div>
+                        </div>
+                    </ul>
                 </div>
             </nav>
         </header>
         <!-- Autocomplete buscador item-->
         <main class="col-6">
             <form>
-                <h1>Lista de la compra</h1>
-                <div class="container">
-                    <div class="header">
-                        <div class="clear">
-                            <i class="refresh" aria-hidden="true"></i>
-                        </div>
-                        <div id="date"></div>
-                    </div>
-                    <div class="add-item">
-                        <input type="text" id="input" placeholder="Add Something to Do">
-                        <button type="submit" id="button" onclick="addToDo()">Click Me</button>
-                    </div>
-                    <div class="content">
-                        <ul id="list">
-                        </ul>
-                    </div>
+                <div id="myDIV" class="header">
+                    <h2>Tu lista del mercado</h2>
+                    <input type="text" id="myInput" placeholder="Title...">
+                    <span onclick="nuevoElemento()" class="addBtn">Agregar</span>
+                </div>
             </form>
             <table>
                 <h3>Categorías</h3>
@@ -67,10 +56,18 @@
         </main>
 
         <!-- Carrito Items cargados-->
-        <aside class="asideCarrito col m-3">
+        <aside class="asideCarrito col">
             <div class="medium-4  columns">
                 <div class="cart">
-                    <h1>Productos en tu Carrito</h1>
+                    <h3>Productos en tu Carrito</h3>
+                    <div>
+                        <ul id="myUL">
+                            <li>Manzanas</li>
+                            <li class="checked">Frutilla</li>
+                            <li>Juguete</li>
+                        </ul>
+
+                    </div>
                     <div class="row">
                         <div class="medium-6 columns">
                             <button class="tiny secondary" id="clear">Vaciar</button>
