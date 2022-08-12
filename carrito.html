@@ -11,73 +11,44 @@
     <title>Carrito | Tu Lista de Mercado</title>
 </head>
 
+
 <body class="container">
-    <div class="container-all row">
-        <header class="col">
+    <div class="container-all row centro">
+        <header class="col-2 navegacion medio">
             <nav class="navbar navbar-light bg-light">
                 <div class="nav flex-column">
-                    <div>
-                        <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
-                        <div id="saludoUsuario"></div>
-                    </div>
+                    <!-- saludo usuario-->
+                    <h4 id="bienvenidaUsuario"> </h4>
+                    </form>
                     <ul>
-                        <div>
+                        <li>
                             <a class="nav-link" href="./home.html">Home</a>
-                        </div>
-                        <div class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#">🛒Carrito</a>
-                        </div>
+                        </li>
+                        </li>
                     </ul>
                 </div>
             </nav>
         </header>
         <!-- Autocomplete buscador item-->
-        <main class="col-6">
-            <form>
-                <div id="myDIV" class="header">
-                    <h2>Tu lista del mercado</h2>
-                    <input type="text" id="myInput" placeholder="Title...">
-                    <span onclick="nuevoElemento()" class="addBtn">Agregar</span>
-                </div>
-            </form>
-            <table>
-                <h3>Categorías</h3>
-                <select id="lacategoria">
-                    <option value="1">Verduras</option>
-                    <option value="2">Frutas</option>
-                    <option value="3">Bebidas</option>
-                    <option value="4">Congelados</option>
-                    <option value="5">Mascotas</option>
-                    <option value="6">Limpieza</option>
-                    <option value="7">Regalería</option>
-                </select>
-            </table>
-
+        <main class="col-5 medio">
+            <h3>Tu lista del mercado</h3>
+            <div class="search">
+                <form>
+                    <input type="text" placeholder="Agregar producto...">
+                    <button class="btn-add">📝</button>
+                </form>
+            </div>
         </main>
-
-        <!-- Carrito Items cargados-->
-        <aside class="asideCarrito col">
-            <div class="medium-4  columns">
-                <div class="cart">
-                    <h3>Productos en tu Carrito</h3>
-                    <div>
-                        <ul id="myUL">
-                            <li>Manzanas</li>
-                            <li class="checked">Frutilla</li>
-                            <li>Juguete</li>
-                        </ul>
-
-                    </div>
-                    <div class="row">
-                        <div class="medium-6 columns">
-                            <button class="tiny secondary" id="clear">Vaciar</button>
-                        </div>
-                        <div class="medium-6 columns">
-                            <button class="tiny disabled" title="chekout">Finalizar</button>
-                        </div>
-                    </div>
-                    <p> Total de Productos: <strong id="totalProductos">0</strong></p>
-                </div>
+        <aside class="asideCarrito col-4">
+            <h5>Changuito</h5>
+            <div class="ol-container">
+                <ol></ol>
+            </div>
+            <div class="empty">
+                <p>No estoy cargado... 😞 </p>
             </div>
         </aside>
 

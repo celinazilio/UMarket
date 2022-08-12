@@ -1,100 +1,56 @@
-let nombreUsuario = prompt("¿Como te llamás?");
-
-function hello(pedirNombre) {
-    if (pedirNombre) {
-        return "¡Hola, " + pedirNombre + "!";
-    } else {
-        return "¡Hola!";
-    }
-}
-let saludo = document.getElementById("saludoUsuario");
-saludo.innerHTML = "<h2>¡Hola, " + nombreUsuario + "!</h2>";
-
-///
-const verdurasProductos = ['Acelga', 'Ajo', 'Cebolla', 'Coliflor', 'Puerro', 'Berenjena', 'Calabaza', 'Tomate', 'Zanahoria', 'Lechuga', 'Remolacha', 'Huevo'];
-const frutasProductos = ['Limón', 'Arándano', 'Frutilla', 'Mandarina', 'Naranja', 'Pomelo', 'Sandía', 'Melón', 'Coco', 'Kiwi', 'Banana', 'Ananá', 'Cereza', 'Manzana', 'Ciruela', 'Uva', 'Pera'];
-const mascotasProductos = ['Comida para perros', 'Comida para gatos', 'Shampoo Antipulgas', 'Correa', 'Bozal', 'Juguete', 'Mordedor', 'Pecera'];
-const limpiezaProductos = ['Papel higiénico', 'Pasta dental', 'Cepillo de dientes', 'Hilo dental', 'Desodorante', 'Jabón', 'Shampoo', 'Acondicionador', 'Lavandina'];
-const bebidasProductos = ['Cerveza 1L', 'Gaseosa cola 2L', 'Agua mineral 600ml', 'Agua saborizada 1.5L', 'Fernet 1L', 'Gaseosa lima 2L', 'Gaseosa naranja 2L', 'Jugo de frutas 1L'];
-const regaleriaProductos = ['Vaso térmico', 'Equipo de mate', 'Mate', 'Cuadro', 'Jarron', 'Maceta'];
-
-
-let arrayDummy = [0];
-
-function listaCantidades(arrayCategoria) {
-    arrayDummy = [0];
-    for (let index = 1; index < arrayCategoria.length; index++) {
-        arrayDummy.push(0);
-    }
-    return arrayDummy;
+// pedida saludo 
+function llamarSaludo() {
+    let name = document.getElementById('pedidaNombre').value;
+    sessionStorage.setItem('userName', name);
 }
 
-class categoria {
-    constructor(nombre, productos, cantidadCompra) {
-        this.nombre = nombre;
-        this.productos = productos;
-        this.cantidadCompra = cantidadCompra;
+// salida saludo
+window.onload = function () {
+    document.getElementById('bienvenidaUsuario').innerText = "Hola, " + sessionStorage.getItem('userName');
+};
+
+
+// selectores
+const input = document.querySelector("input");
+const addBtn = document.querySelector(".btn-add");
+const ol = document.querySelector("ol");
+const empty = document.querySelector(".empty");
+
+addBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const palabra = input.value;
+
+    if (palabra !== "") {
+        const li = document.createElement("li");
+        const p = document.createElement("p");
+        p.textContent = palabra;
+
+        li.appendChild(p);
+        li.appendChild(addDeleteBtn());
+        ol.appendChild(li);
+
+        input.value = "";
+        empty.style.display = "none";
     }
-}
+});
 
-let verduras = new categoria("Verduras", verdurasProductos, listaCantidades(verdurasProductos));
-let mascotas = new categoria("Mascotas", mascotasProductos, listaCantidades(mascotasProductos));
-let limpieza = new categoria("Limpieza", limpiezaProductos, listaCantidades(limpiezaProductos));
-let bebidas = new categoria("Bebidas", bebidasProductos, listaCantidades(bebidasProductos));
-let regaleria = new categoria("Regaleria", regaleriaProductos, listaCantidades(regaleriaProductos));
+function addDeleteBtn() {
+    const deleteBtn = document.createElement("button");
 
-// button
-var listaComprasAdd = document.getElementsByTagName("li");
-var i;
-for (i = 0; i < listaComprasAdd.length; i++) {
-    var span = document.createElement("span");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "listaCerrar";
-    span.appendChild(txt);
-    listaComprasAdd[i].appendChild(span);
-}
+    deleteBtn.textContent = "🗑";
+    deleteBtn.className = "btn-delete";
 
-// click
-var listaCerrar = document.getElementsByClassName("listaCerrar");
-var i;
-for (i = 0; i < listaCerrar.length; i++) {
-    listaCerrar[i].onclick = function () {
-        var div = this.parentElement;
-        div.style.display = "none";
-    }
-}
+    deleteBtn.addEventListener("click", (e) => {
+        const item = e.target.parentElement;
+        ol.removeChild(item);
 
-// "checked" 
-var list = document.querySelector('ul');
-list.addEventListener('click', function (ev) {
-    if (ev.target.tagName === 'LI') {
-        ev.target.classList.toggle('checked');
-    }
-}, false);
+        const items = document.querySelectorAll("li");
 
-//  new list item 
-function nuevoElemento() {
-    var li = document.createElement("li");
-    var inputValue = document.getElementById("myInput").value;
-    var t = document.createTextNode(inputValue);
-    li.appendChild(t);
-    if (inputValue === '') {
-        alert("¡No agregaste nada!");
-    } else {
-        document.getElementById("myUL").appendChild(li);
-    }
-    document.getElementById("myInput").value = "";
-
-    var span = document.createElement("span");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "listaCerrar";
-    span.appendChild(txt);
-    li.appendChild(span);
-
-    for (i = 0; i < listaCerrar.length; i++) {
-        listaCerrar[i].onclick = function () {
-            var div = this.parentElement;
-            div.style.display = "none";
+        if (items.length === 0) {
+            empty.style.display = "block";
         }
-    }
+    });
+
+    return deleteBtn;
 }
