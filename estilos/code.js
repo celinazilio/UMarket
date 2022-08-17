@@ -11,46 +11,130 @@ window.onload = function () {
 
 
 // selectores
-const input = document.querySelector("input");
-const addBtn = document.querySelector(".btn-add");
-const ol = document.querySelector("ol");
-const empty = document.querySelector(".empty");
+const todoForm = document.querySelector(".todo-form");
+const todoList = document.querySelector(".todo-list");
+const totalTasks = document.querySelector(".total-tasks span");
+const completedTasks = document.querySelector(".completed-tasks span");
+const remainingTasks = document.querySelector(".remaining-tasks span");
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+/*
+if (localStorage.getItem("tasks")) {
+  tasks.map((task) => {
+    createTask(task);
+  });
+}
+*/
+localStorage.getItem("tasks") ? tasks.map((task) => {
+    createTask(task);
+}) : console.log("tasks no encontrado");
 
-addBtn.addEventListener("click", (e) => {
+// enviar datos formulario
+todoForm.addEventListener("submit", function (e) {
     e.preventDefault();
+    const input = this.name;
+    const inputValue = input.value;
 
-    const palabra = input.value;
+    if (inputValue != "") {
+        const task = {
+            id: new Date().getTime(),
+            name: inputValue,
+            isCompleted: false
+        };
 
-    if (palabra !== "") {
-        const li = document.createElement("li");
-        const p = document.createElement("p");
-        p.textContent = palabra;
+        tasks.push(task);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        createTask(task);
+        todoForm.reset();
+    }
+    input.focus();
+});
 
-        li.appendChild(p);
-        li.appendChild(addDeleteBtn());
-        ol.appendChild(li);
-
-        input.value = "";
-        empty.style.display = "none";
+// remove task
+todoList.addEventListener("click", (e) => {
+    if (
+        e.target.classList.contains("remove-task") ||
+        e.target.parentElement.classList.contains("remove-task")
+    ) {
+        const taskId = e.target.closest("li").id;
+        removeTask(taskId);
     }
 });
 
-function addDeleteBtn() {
-    const deleteBtn = document.createElement("button");
+// update task - change status or name
+todoList.addEventListener("input", (e) => {
+    const taskId = e.target.closest("li").id;
+    updateTask(taskId, e.target);
+});
 
-    deleteBtn.textContent = "🗑";
-    deleteBtn.className = "btn-delete";
+// prevent new lines with Enter
+todoList.addEventListener("keydown", function (e) {
+    if (e.keyCode === 13) {
+        e.preventDefault();
+    }
+});
 
-    deleteBtn.addEventListener("click", (e) => {
-        const item = e.target.parentElement;
-        ol.removeChild(item);
+// create task
+function createTask(task) {
+    const taskEl = document.createElement("li");
+    taskEl.setAttribute("id", task.id);
+    const taskElMarkup = `
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="${task.name}-${task.id}" name="tasks" ${
+    task.isCompleted ? "checked" : ""
+  }>
+      <label for="${task.name}-${task.id}">
+        <svg class="checkbox-empty">
+          <use xlink:href="#checkbox_empty"></use>
+        </svg>
+        <svg class="checkmark">
+          <use xlink:href="#checkmark"></use>
+        </svg>
+      </label>
+      <span ${!task.isCompleted ? "contenteditable" : ""}>${task.name}</span>
+    </div>
+    <button class="remove-task" title="Remove ${task.name} task">
+      <svg>
+        <use xlink:href="#close"></use>
+      </svg>
+    </button>
+  `;
+    taskEl.innerHTML = taskElMarkup;
+    todoList.appendChild(taskEl);
+    countTasks();
+}
 
-        const items = document.querySelectorAll("li");
+// remove task
+function removeTask(taskId) {
+    tasks = tasks.filter((task) => task.id !== parseInt(taskId));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    document.getElementById(taskId).remove();
+    countTasks();
+}
 
-        if (items.length === 0) {
-            empty.style.display = "block";
+// update task
+function updateTask(taskId, el) {
+    const task = tasks.find((task) => task.id === parseInt(taskId));
+
+    if (el.hasAttribute("contentEditable")) {
+        task.name = el.textContent;
+    } else {
+        const span = el.nextElementSibling.nextElementSibling;
+        task.isCompleted = !task.isCompleted;
+        if (task.isCompleted) {
+            span.removeAttribute("contenteditable");
+            el.setAttribute("checked", "");
+        } else {
+            el.removeAttribute("checked");
+            span.setAttribute("contenteditable", "");
         }
-    });
+    }
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    countTasks();
+}
 
-    return deleteBtn;
+function countTasks() {
+    totalTasks.textContent = tasks.length;
+    const completedTasksArray = tasks.filter((task) => task.isCompleted === true);
+    completedTasks.textContent = completedTasksArray.length;
+    remainingTasks.textContent = tasks.length - completedTasksArray.length;
 }
