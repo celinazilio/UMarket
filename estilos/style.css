@@ -1,9 +1,10 @@
 * {
     padding: 0;
-    margin: 0 auto;
     border: none;
     outline: none;
+    border-radius: 0.8rem;
     font-family: 'Poppins', sans-serif;
+    font-size: small;
     box-sizing: border-box;
 }
 
@@ -14,42 +15,73 @@ a {
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
-body {
-    background-image: linear-gradient(315deg, #e3e7f6 10%, #a8c7db 90%);
-}
 
-.container_todo {
-    padding: 4em;
+
+body {
+    background: linear-gradient(315deg, #e3e7f6 10%, #a8c7db 90%);
+    padding: 1rem;
 }
 
 .container_contenido {
+    width: 85%;
+    height: 80%;
+    margin: auto;
+    text-align: center;
     background-color: white;
-    border-radius: 2rem;
-    padding: 2rem;
 }
 
 
 /* BOTONES PERSONALIZACION*/
 button,
 label {
-    background-color: #df937c;
-    padding: 0.4rem;
-    border-radius: 1rem;
     cursor: pointer;
 }
 
-li {
-    background-color: #d9e8f0;
-    border-radius: 0.6rem;
-    margin: 0.2rem;
-    padding: 0.2rem;
-}
 
-ul {
-    background-color: #fdfcfc;
+li {
     list-style: none;
 }
 
-ul span {
-    padding-right: 4rem;
+.btn-delete {
+    background-color: #d9e8f0;
+}
+
+.btn-add,
+.boton {
+    padding: 0.4rem;
+    background-color: #e1f5c0;
+    border-radius: 1rem;
+}
+
+h5 {
+    background-color: #a8c7db;
+    width: 35%;
+    margin: auto;
+    padding: 0.2rem;
+    border-radius: 2rem;
+}
+
+.btn-delete {
+    border-radius: 3rem;
+    width: 25px;
+    height: 25px;
+    color: white;
+    background-color: rgb(211, 111, 111);
+}
+
+.list-group {
+border: 2px white solid;
+    background-color: #f0f4f7;
+
+}
+
+ul {
+    margin: auto;
+    width: 20rem;
+}
+
+/* DROP */
+
+.contenido-lista {
+    height: 10px;
 }
