@@ -1,1 +1,0 @@
-Utilizado de Librería Javascript  SortableJS

@@ -49,123 +49,65 @@ function addDeleteBtn() {
 }
 
 
-const tareas = document.getElementById('tareas');
-const tareasBebidas = document.getElementById('tareasBebidas');
-const tareasRegaleria = document.getElementById('tareasRegaleria');
-const tareasVerduras = document.getElementById('tareasVerduras');
-const tareasLimpieza = document.getElementById('tareasLimpieza');
 
-Sortable.create(tareas, {
-    group: {
-        name: "lista-tareas",
-    },
-
-    animation: 150,
-    chosenClasss: "activate"
-});
-
-Sortable.create(tareasBebidas, {
-    group: {
-        name: "lista-tareas",
-
-    },
-    animation: 150,
-    chosenClasss: "activate"
-});
-Sortable.create(tareasRegaleria, {
-    group: {
-        name: "lista-tareas",
-
-    },
-    animation: 150,
-    chosenClasss: "activate"
-});
-Sortable.create(tareasLimpieza, {
-    group: {
-        name: "lista-tareas"
-    },
-    animation: 150,
-    chosenClasss: "activate"
-});
-Sortable.create(tareasVerduras, {
-    group: {
-        name: "lista-tareas"
-    },
-    animation: 150,
-    chosenClasss: "activate"
-});
 */
-////fetch
-////fetch
-////fetch
+
 //Initial References
-let result = document.getElementById("result");
-let searchBtn = document.getElementById("search-btn");
-let url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+const get_meal_btn = document.getElementById('get_meal');
+const meal_container = document.getElementById('meal');
 
-searchBtn.addEventListener("click", () => {
-    let userInp = document.getElementById("user-inp").value;
-    if (userInp.length == 0) {
-        result.innerHTML = `<h3>Input Field Cannot Be Empty</h3>`;
-    } else {
-        fetch(url + "userInp")
-            .then((response) => response.json())
-            .then((data) => {
-                let myMeal = data.meals[0];
-                console.log(myMeal);
-                console.log(myMeal.strMealThumb);
-                console.log(myMeal.strMeal);
-                console.log(myMeal.strArea);
-                console.log(myMeal.strInstructions);
-                let count = 1;
-                let ingredients = [];
-                for (let i in myMeal) {
-                    let ingredient = "";
-                    let measure = "";
-                    if (i.startsWith("strIngredient") && myMeal[i]) {
-                        ingredient = myMeal[i];
-                        measure = myMeal[`strMeasure` + count];
-                        count += 1;
-                        ingredients.push(`${measure} ${ingredient}`);
-                    }
-                }
-                console.log(ingredients);
+get_meal_btn.addEventListener('click', () => {
+	fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+		.then(res => res.json())
+		.then(res => {
+		createMeal(res.meals[0]);
+	});
+});
 
-                result.innerHTML = `
-    <img src=${myMeal.strMealThumb}>
-    <div class="details">
-        <h2>${myMeal.strMeal}</h2>
-        <h4>${myMeal.strArea}</h4>
-    </div>
-    <div id="ingredient-con"></div>
-    <div id="recipe">
-        <button id="hide-recipe">X</button>
-        <pre id="instructions">${myMeal.strInstructions}</pre>
-    </div>
-    <button id="show-recipe">View Recipe</button>
-    `;
-                let ingredientCon = document.getElementById("ingredient-con");
-                let parent = document.createElement("ul");
-                let recipe = document.getElementById("recipe");
-                let hideRecipe = document.getElementById("hide-recipe");
-                let showRecipe = document.getElementById("show-recipe");
+const createMeal = (meal) => {
+	const ingredients = [];
+	// todos los ing hasta el 20
+	for(let i=1; i<=20; i++) {
+		if(meal[`strIngredient${i}`]) {
+			ingredients.push(`${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}`)
+		} else {
+			// detener
+			break;
+		}
+	}
+	
+	const newInnerHTML = `
+		<div class="row">
+			<div class="columns five">
+				<img src="${meal.strMealThumb}" alt="receta imagen">
+				${meal.strCategory ? `<p><strong>Categoría:</strong> ${meal.strCategory}</p>` : ''}
+				${meal.strArea ? `<p><strong>Origen:</strong> ${meal.strArea}</p>` : ''}
+				${meal.strTags ? `<p><strong>Etiquetas:</strong> ${meal.strTags.split(',').join(', ')}</p>` : ''}
+				<h5>Ingredientes:</h5>
+				<ul>
+					${ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+				</ul>
+			</div>
+			<div class="columns seven">
+				<h4>${meal.strMeal}</h4>
+				<p>${meal.strInstructions}</p>
+			</div>
+		</div>
+		
+	`;
+	
+	meal_container.innerHTML = newInnerHTML;
+}
 
-                ingredients.forEach((i) => {
-                    let child = document.createElement("li");
-                    child.innerText = i;
-                    parent.appendChild(child);
-                    ingredientCon.appendChild(parent);
-                });
+// SOCIAL PANEL JS
+const floating_btn = document.querySelector('.floating-btn');
+const close_btn = document.querySelector('.close-btn');
+const social_panel_container = document.querySelector('.social-panel-container');
 
-                hideRecipe.addEventListener("click", () => {
-                    recipe.style.display = "none";
-                });
-                showRecipe.addEventListener("click", () => {
-                    recipe.style.display = "block";
-                });
-            })
-            .catch(() => {
-                result.innerHTML = `<h3>Invalid Input</h3>`;
-            });
-    }
+floating_btn.addEventListener('click', () => {
+	social_panel_container.classList.toggle('visible')
+});
+
+close_btn.addEventListener('click', () => {
+	social_panel_container.classList.remove('visible')
 });

@@ -5,7 +5,6 @@
     outline: none;
     font-weight:normal;
     list-style: none;
- 
     margin: 0 auto;
     text-decoration: none;
     text-align: center;
@@ -21,22 +20,24 @@ a {
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
-
+li:hover {
+  padding: 0.4rem;
+width: 20%;
+    border-radius: 3rem;
+    background-color: #b4ac346e;
+}
 
 body {
     background-color: #f4c531;
+    padding: 3em 2.8em;
     font-size: 16px;
 
 }
 
 .container_contenido {
     padding: 3em 2.8em;
-    width: 90vw;
+    width: 96vw;
     max-width: 32em;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
     background-color: #ffffff;
 }
 
@@ -54,11 +55,12 @@ label {
 .btn-add,
 .boton {
     padding: 0.4rem;
-    background-color: #e1f5c0;
+    border-radius: 3rem;
+    background-color: #e09f76;
 }
 
 h5 {
-    background-color: #a8c7db;
+    background-color: #f0b71c;
     padding: 0.2rem;
 }
 
@@ -67,7 +69,7 @@ h5 {
     width: 25px;
     height: 25px;
     color: white;
-    background-color: rgb(211, 111, 111);
+    background-color: rgb(173, 50, 46);
 }
 
 
@@ -85,7 +87,7 @@ h5 {
     padding: 0.6em;
     border: none;
     outline: none;
-    border-bottom: 2px solid #202030;
+    border-bottom: 2px solid #f4c73123;
   }
   .search-container button {
     font-size: 1em;
@@ -114,64 +116,42 @@ h5 {
     font-size: 1em;
     font-weight: 400;
   }
-  #show-recipe {
-    font-size: 1em;
-    position: relative;
-    left: 75%;
-    padding: 0.9em 0.6em;
-    background-color: #f4c531;
-    border: none;
-    top: 1.5em;
-    border-radius: 0.3em;
-    font-weight: 600;
-  }
-  #recipe {
-    position: absolute;
-    background-color: #ffffff;
-    min-height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    border-radius: 0.6em;
-    display: none;
-  }
-  #recipe pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    padding: 2.5em 1.2em 1.2em 1.2em;
-    font-size: 0.92em;
-    color: #303040;
-  }
-  #hide-recipe {
-    font-size: 1em;
-    position: relative;
-    width: 1.8em;
-    height: 1.8em;
-    background-color: #f4c531;
-    border: none;
-    top: 1.2em;
-    left: 90%;
-    border-radius: 0.3em;
-  }
-  ul {
-    font-size: 1em;
-    position: relative;
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 0.8em 1.1em;
-    padding: 1.2em 0 0 1.2em;
-    color: #303040;
-    text-transform: capitalize;
-  }
-  h3 {
-    text-align: center;
-    margin-top: 1.8em;
-    color: #202030;
-  }
+
+ 
   @media screen and (max-width: 500px) {
     .container {
       font-size: 14px;
     }
   }
+
   
+
+/* SOCIAL PANEL CSS */
+
+.floating-text {
+	background-color: #001F61;
+	border-radius: 10px 10px 0 0;
+	color: #fff;
+	font-family: 'Muli';
+	padding: 7px 15px;
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.floating-text a {
+	color: #FF7500;
+	text-decoration: none;
+}
+
+@media screen and (max-width: 480px) {
+
+	.social-panel-container.visible {
+		transform: translateX(0px);
+	}
+	
+	.floating-btn {
+		right: 10px;
+	}
+}
